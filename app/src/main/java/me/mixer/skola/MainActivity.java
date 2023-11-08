@@ -26,21 +26,17 @@ public class MainActivity extends AppCompatActivity {
     String num1 = "";
     String op = "";
     String num2 = "";
+
+    boolean typing = false;
+    boolean toReset = false;
     public void kalkulacka(View button) {
         Button but = (Button) button;
         String cislo = (String) but.getText();
         TextView display = findViewById(R.id.kalkulackaDisplay);
         String text = display.getText().toString();
 
-        if(cislo.equals("=")) {
-            if(num1.equals("")) num1 = text;
-            else num2 = text;
-            text = String.valueOf(kalkulovat());
-            cislo = "";
-        }
-
-        if(text.equals("0") || text.equals("+") || text.equals("-") || text.equals("*") || text.equals("/"))
-            text = "";
+        if(cislo.equals("."))
+            typing = true;
 
         if(cislo.equals("*") || cislo.equals("/") || cislo.equals("+") || cislo.equals("-")) {
             display.setText(cislo);
@@ -48,28 +44,60 @@ public class MainActivity extends AppCompatActivity {
             else num2 = text;
             op = cislo;
             text = "";
+            typing = true;
+            toReset = false;
+        }
+
+        if(text.equals("0") && !typing || text.equals("+") || text.equals("-") || text.equals("*") || text.equals("/")) {
+            text = "";
+        }
+
+        if(toReset) {
+            text = "";
+            num1 = "";
+            num2 = "";
+            toReset = false;
+        }
+
+        if(cislo.equals("=")) {
+            if(num1.equals("")) num1 = text;
+            else num2 = text;
+            text = String.valueOf(kalkulovat());
+            cislo = "";
+            toReset = true;
         }
 
         display.setText(text + cislo);
+
     }
 
     double kalkulovat() {
-        double res = 0;
+        if(num1.equals(""))
+            num1 = "0";
+        if(num2.equals(""))
+            num2 = "0";
+
+        System.out.println("debug: " + num1);
+        System.out.println("debug: " + num2);
+
+        double n1 = Double.parseDouble(num1);
+        double n2 = Double.parseDouble(num2);
+        double res = n1;
 
         if(op.equals("+")) {
-            res = Double.parseDouble(num1) + Double.parseDouble(num2);
+            res = n1 + n2;
         }
 
         if(op.equals("-")) {
-            res = Double.parseDouble(num1) - Double.parseDouble(num2);
+            res = n1 - n2;
         }
 
         if(op.equals("*")) {
-            res = Double.parseDouble(num1) * Double.parseDouble(num2);
+            res = n1 * n2;
         }
 
         if(op.equals("/")) {
-            res = Double.parseDouble(num1) / Double.parseDouble(num2);
+            res = n1 / n2;
         }
 
         num1 = String.valueOf(res);
