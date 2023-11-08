@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,13 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kalkulacka);
-    }
-
-
-    public void Stisknuto(View button) {
-        EditText et = findViewById(R.id.userName);
-        TextView tv = findViewById(R.id.text);
-        tv.setText("Uživatel " + et.getText());
     }
 
     String num1 = "";
@@ -67,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
             toReset = true;
         }
 
-        display.setText(text + cislo);
+        String res = text + cislo;
+        display.setText(res);
 
     }
 
