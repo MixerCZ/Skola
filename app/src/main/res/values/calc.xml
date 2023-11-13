@@ -1,0 +1,19 @@
+<resources>
+    <string name="empty" translatable="false">0</string>
+    <string name="c0" translatable="false">0</string>
+    <string name="c1" translatable="false">1</string>
+    <string name="c2" translatable="false">2</string>
+    <string name="c3" translatable="false">3</string>
+    <string name="c4" translatable="false">4</string>
+    <string name="c5" translatable="false">5</string>
+    <string name="c6" translatable="false">6</string>
+    <string name="c7" translatable="false">7</string>
+    <string name="c8" translatable="false">8</string>
+    <string name="c9" translatable="false">9</string>
+    <string name="divided" translatable="false">/</string>
+    <string name="times" translatable="false">*</string>
+    <string name="minus" translatable="false">-</string>
+    <string name="plus" translatable="false">+</string>
+    <string name="dot" translatable="false">.</string>
+    <string name="equals" translatable="false">=</string>
+</resources>
