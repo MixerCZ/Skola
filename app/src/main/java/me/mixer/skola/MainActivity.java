@@ -2,17 +2,48 @@ package me.mixer.skola;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kalkulacka);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void sachovnice(View v) {
+        TextView tv1 = findViewById(R.id.textView);
+        TextView tv2 = findViewById(R.id.textView3);
+        TextView tv3 = findViewById(R.id.textView4);
+        TextView tv4 = findViewById(R.id.textView5);
+
+
+        switch (i) {
+            case 0:
+                tv1.setText(" ");
+                tv1.setBackgroundColor(Color.WHITE);
+                break;
+            case 1:
+                tv2.setText(" ");
+                tv2.setBackgroundColor(Color.BLACK);
+                break;
+            case 2:
+                tv3.setText(" ");
+                tv3.setBackgroundColor(Color.BLACK);
+                break;
+            case 3:
+                tv4.setText(" ");
+                tv4.setBackgroundColor(Color.WHITE);
+                break;
+        }
+        i++;
     }
 
     String num1 = "";
