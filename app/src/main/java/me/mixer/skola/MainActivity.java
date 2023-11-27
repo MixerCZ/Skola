@@ -15,7 +15,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mizeni);
+        TextView t = findViewById(R.id.textView2);
+        t.setVisibility(View.INVISIBLE);
+    }
+
+    public void visible(View v) {
+        TextView t = findViewById(R.id.textView2);
+        Button b = (Button) v;
+        if(t.getVisibility() == View.VISIBLE) {
+            b.setText("Ukaž");
+            t.setVisibility(View.INVISIBLE);
+        } else {
+            b.setText("Smaž");
+            t.setVisibility(View.VISIBLE);
+        }
     }
 
     public void sachovnice(View v) {
