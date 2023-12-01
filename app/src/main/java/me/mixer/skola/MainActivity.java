@@ -7,18 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     int i = 0;
     TextView citackaText;
+    SeekBar sb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citacka);
         citackaText = findViewById(R.id.citackaText);
+        sb = findViewById(R.id.seekBar);
+        citackaText.setText(sb.getProgress() + "");
+        sb.setOnSeekBarChangeListener();
     }
 
     public void citackaUp(View v) {
