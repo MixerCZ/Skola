@@ -12,9 +12,37 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int i = 0;
+    TextView citackaText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.citacka);
+        citackaText = findViewById(R.id.citackaText);
+    }
+
+    public void citackaUp(View v) {
+        i++;
+        // Ochrana přetečení
+        if(i < 99) {
+            // Přidání 0 před jednociferná čísla
+            if(i > 0 && i < 10) citackaText.setText("0" + i);
+            else citackaText.setText("" + i);
+        } else i--;
+
+    }
+
+    public void citackaDown(View v) {
+        i--;
+        // Ochrana podtečení
+        if(i >= 0) {
+            if(i > 0 && i < 10) citackaText.setText("0" + i);
+            else citackaText.setText("" + i);
+        } else i++;
+
+    }
+
+    public void mizeni() {
         setContentView(R.layout.mizeni);
         TextView t = findViewById(R.id.textView2);
         t.setVisibility(View.INVISIBLE);
