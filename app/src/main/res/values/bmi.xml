@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hmotnost" translatable="true">Hmotnost: </string>
+    <string name="vyska" translatable="true">Výška: </string>
+    <string name="vypocitatBMI" translatable="true">Vypočítat BMI</string>
+    <string name="emptyString" translatable="false"></string>
+</resources>

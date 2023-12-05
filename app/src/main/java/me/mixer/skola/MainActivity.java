@@ -10,39 +10,95 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     int i = 0;
-    TextView citackaText;
-    SeekBar sb;
+
+    SeekBar sbVyska;
+    SeekBar sbHmotnost;
+
+    TextView tvVyska;
+    TextView tvHmotnost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.citacka);
-        citackaText = findViewById(R.id.citackaText);
-        sb = findViewById(R.id.seekBar);
-        citackaText.setText(sb.getProgress() + "");
-        sb.setOnSeekBarChangeListener();
+        setContentView(R.layout.bmi);
+        sbVyska = findViewById(R.id.seekBarVyska);
+        sbHmotnost = findViewById(R.id.seekBarHmotnost);
+        tvVyska = findViewById(R.id.textViewVyska);
+        tvHmotnost = findViewById(R.id.textViewHmotnost);
+        sbVyska.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvVyska.setText("Výška: " + i + " cm");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        sbHmotnost.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvHmotnost.setText("Hmotnost: " + i + " Kg");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    public void BMI(View v) {
+        TextView tv = findViewById(R.id.tvBMI);
+        TextView tv2 = findViewById(R.id.tvBMI2);
+        double hmotnost = sbHmotnost.getProgress();
+        double vyska = sbVyska.getProgress();
+        vyska = vyska/100;
+        double res = hmotnost/(vyska*vyska);
+        tv.setText("BMI je " + Math.round(res));
+
+        if(res<20) tv2.setText("Podváha");
+        else if(res<25) tv2.setText("Norma");
+        else if(res<30) tv2.setText("Nadváha");
+        else tv2.setText("Obezita");
     }
 
     public void citackaUp(View v) {
+        TextView sbProgress = findViewById(R.id.citackaText);
         i++;
         // Ochrana přetečení
         if(i < 99) {
             // Přidání 0 před jednociferná čísla
-            if(i > 0 && i < 10) citackaText.setText("0" + i);
-            else citackaText.setText("" + i);
+            if(i > 0 && i < 10) sbProgress.setText("0" + i);
+            else sbProgress.setText("" + i);
         } else i--;
 
     }
 
     public void citackaDown(View v) {
+        TextView sbProgress = findViewById(R.id.citackaText);
         i--;
         // Ochrana podtečení
         if(i >= 0) {
-            if(i > 0 && i < 10) citackaText.setText("0" + i);
-            else citackaText.setText("" + i);
+            if(i > 0 && i < 10) sbProgress.setText("0" + i);
+            else sbProgress.setText("" + i);
         } else i++;
 
     }

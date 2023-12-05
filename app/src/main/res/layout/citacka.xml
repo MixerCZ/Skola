@@ -5,58 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="78dp"
-        android:layout_height="76dp"
-        android:onClick="citackaUp"
-        app:icon="@android:drawable/arrow_up_float"
-        app:iconSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
-
-    <Button
-        android:id="@+id/button20"
-        android:layout_width="77dp"
-        android:layout_height="84dp"
-        android:onClick="citackaDown"
-        app:icon="@android:drawable/arrow_down_float"
-        app:iconSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
-
     <TextView
         android:id="@+id/citackaText"
-        android:layout_width="181dp"
-        android:layout_height="54dp"
-        android:text="@string/empty"
-        android:textSize="40sp"
+        android:layout_width="60dp"
+        android:layout_height="58dp"
         android:gravity="center"
+        android:text=""
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.468" />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="345dp"
-        android:layout_height="61dp"
-        android:max="10"
+        android:layout_width="329dp"
+        android:layout_height="62dp"
+        android:max="99"
         android:min="0"
-        android:progress="5"
+        android:progress="16"
         android:scrollbarSize="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47" />
+
+    <TextView
+        android:id="@+id/cifry"
+        android:layout_width="345dp"
+        android:layout_height="68dp"
+        android:text="@string/empty"
+        android:textSize="34sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintVertical_bias="0.187" />
 </androidx.constraintlayout.widget.ConstraintLayout>
