@@ -1,5 +1,6 @@
 package me.mixer.skola;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -16,41 +17,31 @@ public class MainActivity extends AppCompatActivity {
 
     int i = 0;
 
-    SeekBar sbVyska;
-    SeekBar sbHmotnost;
-
-    TextView tvVyska;
-    TextView tvHmotnost;
-
+    SeekBar sbpismen;
+    TextView pismeno;
+    TextView tvslovo;
+    String slovo = "test";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bmi);
-        sbVyska = findViewById(R.id.seekBarVyska);
-        sbHmotnost = findViewById(R.id.seekBarHmotnost);
-        tvVyska = findViewById(R.id.textViewVyska);
-        tvHmotnost = findViewById(R.id.textViewHmotnost);
-        sbVyska.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        setContentView(R.layout.hangman);
+        sbpismen = findViewById(R.id.sbPismen);
+        pismeno = findViewById(R.id.pismeno);
+        tvslovo = findViewById(R.id.slovo);
+        pismeno.setText(sbpismen.getProgress() + "");
+
+        String str = "";
+
+        for(int i = 1; i <= slovo.length(); i++) {
+            str += i;
+        }
+
+        tvslovo.setText(str);
+
+        sbpismen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvVyska.setText("Výška: " + i + " cm");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        sbHmotnost.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvHmotnost.setText("Hmotnost: " + i + " Kg");
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                pismeno.setText((char) (progress + 97) + "");
             }
 
             @Override
@@ -65,7 +56,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void obesenec(View v) {
+        int remain = 0;
+        for(int i = 0; i < slovo.length(); i++) {
+            char znak = (char) (sbpismen.getProgress() + 97);
+            if(slovo.charAt(i) == znak) {
+                String act = (String) tvslovo.getText();
+                act = act.replace((char) (i + 49), znak);
+                tvslovo.setText(act);
+            }
+            else {
+                remain++;
+            }
+        }
+
+        //odstranit tlacitko
+        //if(remain == 0)
+    }
+
     public void BMI(View v) {
+        SeekBar sbVyska = findViewById(R.id.seekBarVyska);
+        SeekBar sbHmotnost = findViewById(R.id.seekBarHmotnost);
+
         TextView tv = findViewById(R.id.tvBMI);
         TextView tv2 = findViewById(R.id.tvBMI2);
         double hmotnost = sbHmotnost.getProgress();
