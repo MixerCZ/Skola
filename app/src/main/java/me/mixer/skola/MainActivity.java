@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
     public void genRandom(View v) {
         TextView tvHeader = findViewById(R.id.randomInt);
         if(i == sbpismen.getProgress()) {
-            tvHeader.setText("Správně!");
+            tvHeader.setText(R.string.spravne);
 
         } else {
-            tvHeader.setText("Špatně!");
+            tvHeader.setText(R.string.spatne);
         }
     }
 
@@ -67,14 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(b.getVisibility() == View.VISIBLE) {
             b.setVisibility(View.INVISIBLE);
-            tb.setText("Nová hra");
-            tvHeader.setText("Číslo bylo " + i);
-            i = new Random().nextInt(11);
+            tb.setText(R.string.start);
+            tvHeader.setText(R.string.cisloBylo + i);
         } else {
             b.setVisibility(View.VISIBLE);
-            tb.setText("Konec hry");
-            i = new Random().nextInt(11);
+            tb.setText(R.string.end);
         }
+        i = new Random().nextInt(11);
     }
 
     public void onCreateObesenec() {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         sbpismen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                pismeno.setText((char) (progress + 97) + "");
+                pismeno.setText(String.valueOf((char) (progress + 97)));
             }
 
             @Override
@@ -166,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
         i--;
         // Ochrana podtečení
         if(i >= 0) {
-            if(i > 0 && i < 10) sbProgress.setText("0" + i);
-            else sbProgress.setText("" + i);
+            if(i > 0 && i < 10) sbProgress.setText(R.string.empty + i);
+            else sbProgress.setText(String.valueOf(i));
         } else i++;
 
     }
