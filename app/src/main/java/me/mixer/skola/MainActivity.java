@@ -1,17 +1,15 @@
 package me.mixer.skola;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,11 +18,66 @@ public class MainActivity extends AppCompatActivity {
     SeekBar sbpismen;
     TextView pismeno;
     TextView tvslovo;
-    String slovo = "test";
+    String slovo = "tester";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hangman);
+        setContentView(R.layout.hadani_cisla);
+        //onCreateObesenec();
+        onCreateHadaniCisla();
+    }
+
+    public void onCreateHadaniCisla() {
+        Button b = findViewById(R.id.trybut);
+        b.setVisibility(View.INVISIBLE);
+        sbpismen = findViewById(R.id.hadaniCislaSeek);
+        sbpismen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvslovo = findViewById(R.id.textSeekRng);
+                tvslovo.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    public void genRandom(View v) {
+        TextView tvHeader = findViewById(R.id.randomInt);
+        if(i == sbpismen.getProgress()) {
+            tvHeader.setText("Správně!");
+
+        } else {
+            tvHeader.setText("Špatně!");
+        }
+    }
+
+    public void newGame(View v) {
+        TextView tvHeader = findViewById(R.id.randomInt);
+        Button b = findViewById(R.id.trybut);
+        Button tb = findViewById(v.getId());
+
+        if(b.getVisibility() == View.VISIBLE) {
+            b.setVisibility(View.INVISIBLE);
+            tb.setText("Nová hra");
+            tvHeader.setText("Číslo bylo " + i);
+            i = new Random().nextInt(11);
+        } else {
+            b.setVisibility(View.VISIBLE);
+            tb.setText("Konec hry");
+            i = new Random().nextInt(11);
+        }
+    }
+
+    public void onCreateObesenec() {
         sbpismen = findViewById(R.id.sbPismen);
         pismeno = findViewById(R.id.pismeno);
         tvslovo = findViewById(R.id.slovo);
@@ -64,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 String act = (String) tvslovo.getText();
                 act = act.replace((char) (i + 49), znak);
                 tvslovo.setText(act);
+                remain--;
             }
             else {
                 remain++;
@@ -71,7 +125,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //odstranit tlacitko
-        //if(remain == 0)
+        if(remain <= 0) {
+            Button b = findViewById(R.id.button20);
+            b.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void BMI(View v) {

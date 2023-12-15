@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Kalkulačka</string>
+    <string name="app_name">Hádání čísla</string>
+    <string name="start" translatable="true">Nová hra</string>
 </resources>
