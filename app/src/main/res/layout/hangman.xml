@@ -19,9 +19,10 @@
 
     <TextView
         android:id="@+id/pismeno"
-        android:layout_width="311dp"
-        android:layout_height="59dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:hint="@string/hangman"
         android:text="@string/hangman"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,9 +34,10 @@
 
     <TextView
         android:id="@+id/slovo"
-        android:layout_width="311dp"
-        android:layout_height="59dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:hint="@string/hangman"
         android:text="@string/hangman"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +47,7 @@
         app:layout_constraintVertical_bias="0.086" />
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/hang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="obesenec"
@@ -56,5 +58,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.469" />
+
+    <Button
+        android:id="@+id/newgamehang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="obesenecng"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

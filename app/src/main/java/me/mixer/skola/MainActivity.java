@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
     SeekBar sbpismen;
     TextView pismeno;
     TextView tvslovo;
-    String slovo = "tester";
+    String slovo = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hadani_cisla);
-        //onCreateObesenec();
-        onCreateHadaniCisla();
+        setContentView(R.layout.hangman);
+        onCreateObesenec();
+        //onCreateHadaniCisla();
     }
 
     public void onCreateHadaniCisla() {
@@ -77,18 +77,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCreateObesenec() {
+        Button b = findViewById(R.id.hang);
+        b.setVisibility(View.INVISIBLE);
         sbpismen = findViewById(R.id.sbPismen);
         pismeno = findViewById(R.id.pismeno);
         tvslovo = findViewById(R.id.slovo);
-        pismeno.setText(sbpismen.getProgress() + "");
+        pismeno.setText(String.valueOf(sbpismen.getProgress()));
 
-        String str = "";
-
-        for(int i = 1; i <= slovo.length(); i++) {
-            str += i;
-        }
-
-        tvslovo.setText(str);
+        loadHangman();
 
         sbpismen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -108,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void loadHangman() {
+        String str = "";
+
+        for(int i = 1; i <= slovo.length(); i++) {
+            str += i;
+        }
+
+        tvslovo.setText(str);
+    }
+
     public void obesenec(View v) {
         int remain = 0;
         for(int i = 0; i < slovo.length(); i++) {
@@ -125,8 +131,29 @@ public class MainActivity extends AppCompatActivity {
 
         //odstranit tlacitko
         if(remain <= 0) {
-            Button b = findViewById(R.id.button20);
+            Button b = findViewById(R.id.hang);
             b.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void obesenecng(View v) {
+        int r = new Random().nextInt(4);
+        if(r == 0) slovo = "ZOO";
+        if(r == 1) slovo = "tygr";
+        if(r == 2) slovo = "Martin";
+        if(r == 3) slovo = "Logoped";
+        if(r == 4) slovo = "Slovo";
+
+        Button b = findViewById(R.id.hang);
+        Button tb = findViewById(v.getId());
+
+        if(b.getVisibility() == View.VISIBLE) {
+            b.setVisibility(View.INVISIBLE);
+            tb.setText(R.string.start);
+        } else {
+            b.setVisibility(View.VISIBLE);
+            tb.setText(R.string.end);
+            loadHangman();
         }
     }
 
