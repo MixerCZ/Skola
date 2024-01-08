@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -20,51 +18,13 @@ public class MainActivity extends AppCompatActivity {
     SeekBar sbpismen;
     TextView pismeno;
     TextView tvslovo;
-    String slovo = "";
-    int remain = 0;
-    Handler h = new Handler();
+    String slovo = "tester";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.automat);
+        setContentView(R.layout.hadani_cisla);
         //onCreateObesenec();
-        //onCreateHadaniCisla();
-        onCreateAutomat();
-    }
-
-    public void onCreateAutomat() {
-
-    }
-
-    public void automatStart(View b) {
-        timer.run();
-    }
-
-    Runnable timer = new Runnable() {
-        @Override
-        public void run() {
-            TextView tv = findViewById(R.id.tvn0);
-            TextView tv1 = findViewById(R.id.tvn1);
-            TextView tv2 = findViewById(R.id.tvn2);
-
-            tv.setText(String.valueOf(new Random().nextInt(10)));
-            tv1.setText(String.valueOf(new Random().nextInt(10)));
-            tv2.setText(String.valueOf(new Random().nextInt(10)));
-            h.postDelayed(this, 100);
-        }
-    };
-
-    public void automatStop(View b) {
-        h.removeCallbacks(timer);
-        TextView tv = findViewById(R.id.tvn0);
-        TextView tv1 = findViewById(R.id.tvn1);
-        TextView tv2 = findViewById(R.id.tvn2);
-        TextView tvAutomat = findViewById(R.id.tvautomat);
-
-        if(tv.getText() == tv1.getText() || tv1.getText() == tv2.getText() || tv.getText() == tv2.getText()) {
-            tvAutomat.setText("SHODA");
-        }
-        else tvAutomat.setText("NESHODA");
+        onCreateHadaniCisla();
     }
 
     public void onCreateHadaniCisla() {
@@ -117,14 +77,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCreateObesenec() {
-        Button b = findViewById(R.id.hang);
-        b.setVisibility(View.INVISIBLE);
         sbpismen = findViewById(R.id.sbPismen);
         pismeno = findViewById(R.id.pismeno);
         tvslovo = findViewById(R.id.slovo);
-        pismeno.setText(String.valueOf(sbpismen.getProgress()));
+        pismeno.setText(sbpismen.getProgress() + "");
 
-        loadHangman();
+        String str = "";
+
+        for(int i = 1; i <= slovo.length(); i++) {
+            str += i;
+        }
+
+        tvslovo.setText(str);
 
         sbpismen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -144,61 +108,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void loadHangman() {
-        String str = "";
-
-        for(int i = 1; i <= slovo.length(); i++) {
-            str += i;
-        }
-
-        tvslovo.setText(str);
-    }
-
     public void obesenec(View v) {
+        int remain = 0;
         for(int i = 0; i < slovo.length(); i++) {
             char znak = (char) (sbpismen.getProgress() + 97);
-            char znakUpper = (char) (sbpismen.getProgress() + 65);
             if(slovo.charAt(i) == znak) {
                 String act = (String) tvslovo.getText();
                 act = act.replace((char) (i + 49), znak);
                 tvslovo.setText(act);
                 remain--;
-            } else if (slovo.charAt(i) == znakUpper) {
-                String act = (String) tvslovo.getText();
-                act = act.replace((char) (i + 49), znakUpper);
-                tvslovo.setText(act);
-                remain--;
             }
-            Log.d("Remain",remain + ": remain");
+            else {
+                remain++;
+            }
         }
 
         //odstranit tlacitko
         if(remain <= 0) {
-            Button b = findViewById(R.id.hang);
+            Button b = findViewById(R.id.button20);
             b.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    //Oběšenec - new game
-    public void obesenecng(View v) {
-        int r = new Random().nextInt(4);
-        if(r == 0) slovo = "ZOO";
-        if(r == 1) slovo = "tygr";
-        if(r == 2) slovo = "Martin";
-        if(r == 3) slovo = "LOGoPEd";
-        if(r == 4) slovo = "Slovo";
-        remain = slovo.length();
-
-        Button b = findViewById(R.id.hang);
-        Button tb = findViewById(v.getId());
-
-        if(b.getVisibility() == View.VISIBLE) {
-            b.setVisibility(View.INVISIBLE);
-            tb.setText(R.string.start);
-        } else {
-            b.setVisibility(View.VISIBLE);
-            tb.setText(R.string.end);
-            loadHangman();
         }
     }
 
