@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     String slovo = "";
     int remain = 0;
     Handler h = new Handler();
+
+    boolean automatRun = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void automatStart(View b) {
+    public void automatStart() {
+        automatRun = true;
         timer.run();
+    }
+
+    public void automatToggle(View b) {
+        TextView tvbody = findViewById(R.id.tvbody);
+        TextView tvAutomat = findViewById(R.id.tvautomat);
+
+        // reset
+        if(i<-2||i>2) {
+            i=0;
+            tvbody.setText("Body: 0");
+        }
+        if(automatRun) automatStop();
+        else {
+            tvAutomat.setText("");
+            automatStart();
+        }
     }
 
     Runnable timer = new Runnable() {
@@ -50,21 +69,38 @@ public class MainActivity extends AppCompatActivity {
             tv.setText(String.valueOf(new Random().nextInt(10)));
             tv1.setText(String.valueOf(new Random().nextInt(10)));
             tv2.setText(String.valueOf(new Random().nextInt(10)));
-            h.postDelayed(this, 100);
+            h.postDelayed(this, 700);
         }
     };
 
-    public void automatStop(View b) {
+    public void automatStop() {
+        automatRun = false;
         h.removeCallbacks(timer);
         TextView tv = findViewById(R.id.tvn0);
         TextView tv1 = findViewById(R.id.tvn1);
         TextView tv2 = findViewById(R.id.tvn2);
         TextView tvAutomat = findViewById(R.id.tvautomat);
+        TextView tvbody = findViewById(R.id.tvbody);
 
-        if(tv.getText() == tv1.getText() || tv1.getText() == tv2.getText() || tv.getText() == tv2.getText()) {
-            tvAutomat.setText("SHODA");
+        //2 shody - +1 bod
+        if(tv.getText() == tv1.getText() && tv1.getText() == tv2.getText()) {
+            tvAutomat.setText("SHODA 3x");
+            i+=2;
         }
-        else tvAutomat.setText("NESHODA");
+        //3 shody - +2 body
+        else if(tv.getText() == tv1.getText() || tv1.getText() == tv2.getText() || tv.getText() == tv2.getText()){
+            tvAutomat.setText("SHODA");
+            i++;
+        }
+        //neshoda - -1 bod
+        else {
+            tvAutomat.setText("NESHODA");
+            i--;
+        }
+
+        tvbody.setText("Body: " + i);
+        if(i>2) tvbody.setText("Výhra!");
+        if(i<-2) tvbody.setText("Prohra!");
     }
 
     public void onCreateHadaniCisla() {

@@ -5,4 +5,5 @@
     <string name="spravne" translatable="true">Správně</string>
     <string name="spatne" translatable="true">Špatně</string>
     <string name="cisloBylo" translatable="true">Číslo bylo </string>
+    <string name="body" translatable="true">Body: 0</string>
 </resources>
