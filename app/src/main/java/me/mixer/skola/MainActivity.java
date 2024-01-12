@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.automat);
         //onCreateObesenec();
         //onCreateHadaniCisla();
-        onCreateAutomat();
+        //onCreateAutomat();
+        new AutomatNew().onCreate();
     }
 
     public void onCreateAutomat() {
