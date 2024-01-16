@@ -103,35 +103,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.36" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        style="@android:style/Widget.DeviceDefault.ImageButton"
-        android:layout_width="36dp"
-        android:layout_height="39dp"
-        android:background="@android:drawable/radiobutton_off_background"
-        android:onClick="obr2"
-        android:scaleX="5"
-        android:scaleY="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="36dp"
-        android:layout_height="39dp"
-        android:background="@android:drawable/radiobutton_on_background"
-        android:onClick="obr1"
-        android:scaleX="5"
-        android:scaleY="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
