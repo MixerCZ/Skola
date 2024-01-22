@@ -1,5 +1,7 @@
 package me.mixer.skola;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -13,6 +15,14 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,66 +71,39 @@ public class MainActivity extends AppCompatActivity {
 
     public void pexeso(View b) {
         //Generate random pictures
-        if (i == 0) {
-            Random r = new Random();
-            int i1 = r.nextInt(2);
-            int i2 = r.nextInt(2);
-            if (i1 == 0) p1 = getDrawable(R.drawable.redcircle);
-            if (i2 == 0) p2 = getDrawable(R.drawable.redcircle);
+        if(i==0) {
+            ArrayList<Integer> arr = new ArrayList<>(12);
+            arr.addAll(Arrays.asList(R.drawable.greencircle, R.drawable.redcircle,R.drawable.kocka,R.drawable.pes,R.drawable.opice, R.drawable.tygr));
 
-            if (i1 == 0 && i2 == 1 || i1 == 1 && i2 == 0) {
-                int i3 = r.nextInt(2);
-                if (i3 == 0) p3 = getDrawable(R.drawable.redcircle);
-                else p4 = getDrawable(R.drawable.redcircle);
-            }
+            Collections.shuffle(arr);
 
-            if (i1 == 1 && i2 == 1) {
-                p3 = getDrawable(R.drawable.redcircle);
-                p4 = getDrawable(R.drawable.redcircle);
-            }
+            p1 = getDrawable(arr.get(0));
+            p2 = getDrawable(arr.get(0));
+            p3 = getDrawable(arr.get(1));
+            p4 = getDrawable(arr.get(1));
+            p5 = getDrawable(arr.get(2));
+            p6 = getDrawable(arr.get(2));
+            p7 = getDrawable(arr.get(3));
+            p8 = getDrawable(arr.get(3));
+            p9 = getDrawable(arr.get(4));
+            p10 = getDrawable(arr.get(4));
+            p11 = getDrawable(arr.get(5));
+            p12 = getDrawable(arr.get(5));
 
-            int j1 = r.nextInt(2);
-            int j2 = r.nextInt(2);
-            if (j1 == 0) p5 = getDrawable(R.drawable.redcircle);
-            if (j2 == 0) p6 = getDrawable(R.drawable.redcircle);
-
-            if (j1 == 0 && j2 == 1 || j1 == 1 && j2 == 0) {
-                int j3 = r.nextInt(2);
-                if (j3 == 0) p7 = getDrawable(R.drawable.redcircle);
-                else p8 = getDrawable(R.drawable.redcircle);
-            }
-
-            if (j1 == 1 && j2 == 1) {
-                p7 = getDrawable(R.drawable.redcircle);
-                p8 = getDrawable(R.drawable.redcircle);
-            }
-
-            int k1 = r.nextInt(2);
-            int k2 = r.nextInt(2);
-            if (k1 == 0) p9 = getDrawable(R.drawable.redcircle);
-            if (k2 == 0) p10 = getDrawable(R.drawable.redcircle);
-
-            if (k1 == 0 && k2 == 1 || k1 == 1 && k2 == 0) {
-                int k3 = r.nextInt(2);
-                if (k3 == 0) p11 = getDrawable(R.drawable.redcircle);
-                else p12 = getDrawable(R.drawable.redcircle);
-            }
-
-            if (k1 == 1 && k2 == 1) {
-                p11 = getDrawable(R.drawable.redcircle);
-                p12 = getDrawable(R.drawable.redcircle);
-            }
-            i = 1;
+            i=1;
         }
 
         ImageView ib = findViewById(b.getId());
         otocenoCounter++;
         if (otocenoCounter == 1) {
             last = ib;
+            last.setTag("Clicked");
         } else if (otocenoCounter == 2) {
             last2 = ib;
+            last2.setTag("Clicked");
+            if(last.getId() == last2.getId()) otocenoCounter--;
         } else {
-            if (last.getDrawable().getConstantState() == last2.getDrawable().getConstantState()) {
+            if (last.getDrawable().getConstantState() == last2.getDrawable().getConstantState() && last.getId() != last2.getId()) {
                 last.setVisibility(View.INVISIBLE);
                 last2.setVisibility(View.INVISIBLE);
             } else {
@@ -128,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 last2.setImageDrawable(getDrawable(R.drawable.pexeso));
             }
             otocenoCounter = 1;
+            last.setTag("Clicked");
             last = ib;
         }
 
