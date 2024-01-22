@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     boolean otoceno3 = false;
     boolean otoceno4 = false;
 
-    Drawable p1,p2,p3,p4;
+    Drawable p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,66 +45,128 @@ public class MainActivity extends AppCompatActivity {
         p2 = getDrawable(R.drawable.greencircle);
         p3 = getDrawable(R.drawable.greencircle);
         p4 = getDrawable(R.drawable.greencircle);
+        p5 = getDrawable(R.drawable.greencircle);
+        p6 = getDrawable(R.drawable.greencircle);
+        p7 = getDrawable(R.drawable.greencircle);
+        p8 = getDrawable(R.drawable.greencircle);
+        p9 = getDrawable(R.drawable.greencircle);
+        p10 = getDrawable(R.drawable.greencircle);
+        p11 = getDrawable(R.drawable.greencircle);
+        p12 = getDrawable(R.drawable.greencircle);
     }
 
     int otocenoCounter = 0;
     ImageView last;
+    ImageView last2;
 
     public void pexeso(View b) {
         //Generate random pictures
-        if(i == 0) {
+        if (i == 0) {
             Random r = new Random();
             int i1 = r.nextInt(2);
             int i2 = r.nextInt(2);
-            if(i1 == 0) p1 = getDrawable(R.drawable.redcircle);
-            if(i2 == 0) p2 = getDrawable(R.drawable.redcircle);
+            if (i1 == 0) p1 = getDrawable(R.drawable.redcircle);
+            if (i2 == 0) p2 = getDrawable(R.drawable.redcircle);
 
-            if(i1 == 0 && i2 == 1 || i1 == 1 && i2 == 0) {
+            if (i1 == 0 && i2 == 1 || i1 == 1 && i2 == 0) {
                 int i3 = r.nextInt(2);
-                if(i3 == 0) p3 = getDrawable(R.drawable.redcircle);
+                if (i3 == 0) p3 = getDrawable(R.drawable.redcircle);
                 else p4 = getDrawable(R.drawable.redcircle);
             }
 
-            if(i1 == 1 && i2 == 1) {
+            if (i1 == 1 && i2 == 1) {
                 p3 = getDrawable(R.drawable.redcircle);
                 p4 = getDrawable(R.drawable.redcircle);
             }
-            i=1;
+
+            int j1 = r.nextInt(2);
+            int j2 = r.nextInt(2);
+            if (j1 == 0) p5 = getDrawable(R.drawable.redcircle);
+            if (j2 == 0) p6 = getDrawable(R.drawable.redcircle);
+
+            if (j1 == 0 && j2 == 1 || j1 == 1 && j2 == 0) {
+                int j3 = r.nextInt(2);
+                if (j3 == 0) p7 = getDrawable(R.drawable.redcircle);
+                else p8 = getDrawable(R.drawable.redcircle);
+            }
+
+            if (j1 == 1 && j2 == 1) {
+                p7 = getDrawable(R.drawable.redcircle);
+                p8 = getDrawable(R.drawable.redcircle);
+            }
+
+            int k1 = r.nextInt(2);
+            int k2 = r.nextInt(2);
+            if (k1 == 0) p9 = getDrawable(R.drawable.redcircle);
+            if (k2 == 0) p10 = getDrawable(R.drawable.redcircle);
+
+            if (k1 == 0 && k2 == 1 || k1 == 1 && k2 == 0) {
+                int k3 = r.nextInt(2);
+                if (k3 == 0) p11 = getDrawable(R.drawable.redcircle);
+                else p12 = getDrawable(R.drawable.redcircle);
+            }
+
+            if (k1 == 1 && k2 == 1) {
+                p11 = getDrawable(R.drawable.redcircle);
+                p12 = getDrawable(R.drawable.redcircle);
+            }
+            i = 1;
         }
 
         ImageView ib = findViewById(b.getId());
-        if(ib.getId() == R.id.p1) {
+        otocenoCounter++;
+        if (otocenoCounter == 1) {
+            last = ib;
+        } else if (otocenoCounter == 2) {
+            last2 = ib;
+        } else {
+            if (last.getDrawable().getConstantState() == last2.getDrawable().getConstantState()) {
+                last.setVisibility(View.INVISIBLE);
+                last2.setVisibility(View.INVISIBLE);
+            } else {
+                last.setImageDrawable(getDrawable(R.drawable.pexeso));
+                last2.setImageDrawable(getDrawable(R.drawable.pexeso));
+            }
+            otocenoCounter = 1;
+            last = ib;
+        }
+
+        if (ib.getId() == R.id.p1) {
             ib.setImageDrawable(p1);
-            otoceno1 = true;
-            otocenoCounter++;
-            last = ib;
         }
-        if(ib.getId() == R.id.p2) {
+        if (ib.getId() == R.id.p2) {
             ib.setImageDrawable(p2);
-            otoceno2 = true;
-            otocenoCounter++;
-            last = ib;
         }
-        if(ib.getId() == R.id.p3) {
+        if (ib.getId() == R.id.p3) {
             ib.setImageDrawable(p3);
-            otoceno3 = true;
-            otocenoCounter++;
-            last = ib;
         }
-        if(ib.getId() == R.id.p4) {
+        if (ib.getId() == R.id.p4) {
             ib.setImageDrawable(p4);
         }
-
-        if(otocenoCounter >= 2) {
-
-            if(ib.getDrawable() == last) {
-
-            }
+        if (ib.getId() == R.id.p5) {
+            ib.setImageDrawable(p5);
         }
-    }
-
-    public void onCreateAutomat() {
-
+        if (ib.getId() == R.id.p6) {
+            ib.setImageDrawable(p6);
+        }
+        if (ib.getId() == R.id.p7) {
+            ib.setImageDrawable(p7);
+        }
+        if (ib.getId() == R.id.p8) {
+            ib.setImageDrawable(p8);
+        }
+        if (ib.getId() == R.id.p9) {
+            ib.setImageDrawable(p9);
+        }
+        if (ib.getId() == R.id.p10) {
+            ib.setImageDrawable(p10);
+        }
+        if (ib.getId() == R.id.p11) {
+            ib.setImageDrawable(p11);
+        }
+        if (ib.getId() == R.id.p12) {
+            ib.setImageDrawable(p12);
+        }
     }
 
     public void automatStart() {

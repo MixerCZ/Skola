@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hádání čísla</string>
+    <string name="app_name">Pexeso</string>
     <string name="start" translatable="true">Nová hra</string>
     <string name="end" translatable="true">Konec hry</string>
     <string name="spravne" translatable="true">Správně</string>
