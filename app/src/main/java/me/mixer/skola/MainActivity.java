@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    Activity act = MainActivity.this;
     int i = 0;
 
     SeekBar sbpismen;
@@ -66,8 +68,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int otocenoCounter = 0;
+    int pokusy = 0;
     ImageView last;
     ImageView last2;
+
+    public void reload(View b) {
+        act.recreate();
+    }
+
+    public void stop(View b) {
+        act.finishAffinity();
+    }
 
     public void pexeso(View b) {
         //Generate random pictures
@@ -97,10 +108,8 @@ public class MainActivity extends AppCompatActivity {
         otocenoCounter++;
         if (otocenoCounter == 1) {
             last = ib;
-            last.setTag("Clicked");
         } else if (otocenoCounter == 2) {
             last2 = ib;
-            last2.setTag("Clicked");
             if(last.getId() == last2.getId()) otocenoCounter--;
         } else {
             if (last.getDrawable().getConstantState() == last2.getDrawable().getConstantState() && last.getId() != last2.getId()) {
@@ -109,11 +118,14 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 last.setImageDrawable(getDrawable(R.drawable.pexeso));
                 last2.setImageDrawable(getDrawable(R.drawable.pexeso));
+                pokusy++;
             }
             otocenoCounter = 1;
-            last.setTag("Clicked");
             last = ib;
         }
+
+        TextView pokusyD = findViewById(R.id.pocetKaret);
+        pokusyD.setText("Chyby: " + pokusy);
 
         if (ib.getId() == R.id.p1) {
             ib.setImageDrawable(p1);
