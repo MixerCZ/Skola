@@ -49,10 +49,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pexeso);
+        setContentView(R.layout.test);
         //onCreateObesenec();
         //onCreateHadaniCisla();
         //onCreateAutomat();
+        //onCreatePexeso();
+        onCreateTest();
+    }
+
+    public void onCreateTest() {
+
+    };
+
+    public void TestFce(View v) {
+
+    };
+
+    public void onCreatePexeso() {
         p1 = getDrawable(R.drawable.greencircle);
         p2 = getDrawable(R.drawable.greencircle);
         p3 = getDrawable(R.drawable.greencircle);
