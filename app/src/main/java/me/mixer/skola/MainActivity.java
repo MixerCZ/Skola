@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -57,12 +58,26 @@ public class MainActivity extends AppCompatActivity {
         onCreateTest();
     }
 
+    EditText t1,t2,t3;
     public void onCreateTest() {
-
+        t1 = findViewById(R.id.tNumber1);
+        t2 = findViewById(R.id.tText);
+        t3 = findViewById(R.id.tNumber2);
+        tvslovo = findViewById(R.id.tvPis);
     };
 
     public void TestFce(View v) {
+        double a = Double.parseDouble(t1.getText().toString());
+        double b = Double.parseDouble(t3.getText().toString());
+        int op = t2.getText().charAt(0);
+        double res = 0;
 
+        if(op == '+') res = a+b;
+        else if(op == '-') res = a-b;
+        else if(op == '*') res = a*b;
+        else res = a/b;
+
+        tvslovo.setText(res + "");
     };
 
     public void onCreatePexeso() {

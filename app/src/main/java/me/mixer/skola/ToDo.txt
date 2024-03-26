@@ -1,0 +1,13 @@
+TODO
+
+Zadej heslo
+
+**** TL.
+
+po zadání
+
+**** tl. (kontrola)
+
+po zadání
+
+heslo je / není ok
