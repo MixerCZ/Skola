@@ -50,12 +50,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.heslo);
         //onCreateObesenec();
         //onCreateHadaniCisla();
         //onCreateAutomat();
         //onCreatePexeso();
-        onCreateTest();
+        //onCreateTest();
+    }
+
+    public void Heslo(View v) {
+        Button b = findViewById(R.id.bPass);
+        TextView tvPass = findViewById(R.id.tvPass);
+        EditText etPass = findViewById(R.id.etPass);
+        String pass = "";
+
+        if(b.getText().toString().toLowerCase().equals("potvrdit")) {
+            pass = etPass.getText().toString();
+            tvPass.setText("Kontrola hesla");
+            etPass.setText("");
+            b.setText("Kontrola");
+        } else {
+            if(etPass.getText().toString().equals(pass))
+                tvPass.setText("Správně!");
+            else
+                tvPass.setText("Špatně!");
+        }
     }
 
     EditText t1,t2,t3;
