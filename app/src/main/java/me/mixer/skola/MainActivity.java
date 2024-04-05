@@ -52,12 +52,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.heslo);
-        //onCreateObesenec();
-        //onCreateHadaniCisla();
-        //onCreateAutomat();
-        //onCreatePexeso();
-        //onCreateTest();
+        setContentView(R.layout.samohlasky);
+    }
+
+    public void Samohlasky(View v) {
+        Button btn = findViewById(R.id.bSamo);
+        EditText et = findViewById(R.id.etSamo);
+        TextView tv = findViewById(R.id.tvSamo);
+
+        String str = et.getText().toString().toLowerCase();
+        int c = 0;
+
+        if(btn.getText().toString().equalsIgnoreCase("ok")) {
+            for(int i = 0; i < str.length(); i++) {
+                if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u' || str.charAt(i) == 'y')
+                    c++;
+            }
+            tv.setText("Počet samohlásek je " + c);
+            btn.setText("Clear");
+        } else {
+            et.setText("");
+            tv.setText("");
+            btn.setText("Ok");
+        }
     }
 
     public void Heslo(View v) {
@@ -65,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         TextView tvPass = findViewById(R.id.tvPass);
         EditText etPass = findViewById(R.id.etPass);
 
-        if(b.getText().toString().toLowerCase().equals("potvrdit")) {
+        if(b.getText().toString().equalsIgnoreCase("potvrdit")) {
             pass = etPass.getText().toString();
             tvPass.setText("Kontrola hesla");
             etPass.setText("");
