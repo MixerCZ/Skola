@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.36" />
 
     <TextView
         android:id="@+id/tvPass"
@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/bPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="369dp"
+        android:layout_height="88dp"
         android:onClick="Heslo"
         android:text="Potvrdit"
         android:textSize="50sp"

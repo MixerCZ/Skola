@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     boolean otoceno3 = false;
     boolean otoceno4 = false;
 
+    String pass = "";
+
     Drawable p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         Button b = findViewById(R.id.bPass);
         TextView tvPass = findViewById(R.id.tvPass);
         EditText etPass = findViewById(R.id.etPass);
-        String pass = "";
 
         if(b.getText().toString().toLowerCase().equals("potvrdit")) {
             pass = etPass.getText().toString();
