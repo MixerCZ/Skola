@@ -52,8 +52,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.samohlasky);
+        setContentView(R.layout.cvickalk);
+        onCreateCvic();
     }
+
+    public void onCreateCvic() {
+        SeekBar sbOperator = findViewById(R.id.sbO);
+        TextView operator = findViewById(R.id.operator);
+        sbOperator.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if(i == 0) operator.setText("+");
+                if(i == 1) operator.setText("-");
+                if(i == 2) operator.setText("*");
+                if(i == 3) operator.setText("/");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    public void calculate(View v) {
+        TextView tvRes = findViewById(R.id.tvRes);
+        SeekBar sbOperator = findViewById(R.id.sbO);
+        EditText eta = findViewById(R.id.etA);
+        EditText etb = findViewById(R.id.etB);
+
+        double a = Double.parseDouble(String.valueOf(eta.getText()));
+        double b = Double.parseDouble(String.valueOf(etb.getText()));
+
+        if(sbOperator.getProgress() == 0) tvRes.setText(a+b + "");
+        if(sbOperator.getProgress() == 1) tvRes.setText(a-b + "");
+        if(sbOperator.getProgress() == 2) tvRes.setText(a*b + "");
+        if(sbOperator.getProgress() == 3) tvRes.setText(a/b + "");
+    }
+
+
 
     public void Samohlasky(View v) {
         Button btn = findViewById(R.id.bSamo);
