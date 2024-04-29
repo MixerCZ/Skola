@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,8 +54,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cvickalk);
-        onCreateCvic();
+        setContentView(R.layout.rc);
+    }
+
+    public void rodneCisloPohlavi(View v) {
+        EditText rodneCislo = findViewById(R.id.rodneCislo);
+        TextView pohlavi = findViewById(R.id.pohlavi);
+        int mesic = Integer.parseInt(
+                rodneCislo.getText().toString().charAt(2) + "" + rodneCislo.getText().toString().charAt(3)
+        );
+
+        int den = Integer.parseInt(
+                rodneCislo.getText().toString().charAt(4) + "" + rodneCislo.getText().toString().charAt(5)
+        );
+
+        pohlavi.setText(mesic+"");
+        if(mesic > 0 && mesic < 13) {
+            pohlavi.setText("muž");
+        } else if (mesic > 50 && mesic < 63) {
+            pohlavi.setText("žena");
+        } else pohlavi.setText("Chyba");
+
+        if(mesic > 12) mesic = mesic-48;
+
+        if(mesic == 4 || mesic == 6 || mesic == 9 || mesic == 11) {
+            if(den > 30) pohlavi.setText("Chyba");
+        }
+
+        if(mesic == 2) if (den > 29) pohlavi.setText("Chyba");
+
+        if(den > 31) pohlavi.setText("Chyba");
     }
 
     public void onCreateCvic() {
